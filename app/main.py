@@ -2,6 +2,7 @@ from fastapi import FastAPI, Request, Form
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
+from app.service_ai import classify
 
 
 app = FastAPI()
@@ -19,4 +20,5 @@ def home(request: Request):
 # esse endpoint processa o formulario enviado na pagina inicial e retorna a classificacao do email.
 @app.post("/classify", response_class=HTMLResponse)
 def classify_email(request: Request, email_content: str = Form(...)):
-    return template.TemplateResponse("index.html", {"request": request, "email_content": email_content, "category": "Produtivo", "classification": "This is a placeholder classification result."})
+    result = classify(email_content)
+    return template.TemplateResponse("index.html", {"request": request, "category": result["category"], "classification": result["classification"]})
