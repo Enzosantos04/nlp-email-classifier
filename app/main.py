@@ -1,9 +1,23 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request, Form
+from fastapi.responses import HTMLResponse
+from fastapi.templating import Jinja2Templates
+from fastapi.staticfiles import StaticFiles
 
 
 app = FastAPI()
 
+template = Jinja2Templates(directory="templates")
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
-@app.get("/")
-def home():
-    return {"message": "Welcome to the NLP Email Classifier API"}
+
+# esse endpoint renderiza a pagina inicial html
+@app.get("/", response_class=HTMLResponse)
+def home(request: Request):
+    return template.TemplateResponse("index.html", {"request": request})
+
+# esse endpoint processa o formulario enviado via POST
+
+
+@app.post("/classify", response_class=HTMLResponse)
+def classify_email(request: Request, email_content: str = Form(...)):
+    return template.TemplateResponse("index.html", {"request": request, "email_content": email_content, "classification": "This is a placeholder classification result."})
