@@ -15,9 +15,8 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 def home(request: Request):
     return template.TemplateResponse("index.html", {"request": request})
 
-# esse endpoint processa o formulario enviado via POST
 
-
+# esse endpoint processa o formulario enviado na pagina inicial e retorna a classificacao do email.
 @app.post("/classify", response_class=HTMLResponse)
 def classify_email(request: Request, email_content: str = Form(...)):
-    return template.TemplateResponse("index.html", {"request": request, "email_content": email_content, "classification": "This is a placeholder classification result."})
+    return template.TemplateResponse("index.html", {"request": request, "email_content": email_content, "category": "Produtivo", "classification": "This is a placeholder classification result."})
