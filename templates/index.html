@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Email AI Classifier</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <h1>Email AI Classifier</h1>
+
+    <form method="post" action="/classify">
+      <textarea
+        name="email_content"
+        placeholder="Cole aqui o conteúdo do email..."
+        required
+      ></textarea>
+
+      <button type="submit">Classificar Email</button>
+    </form>
+
+    {% if category %}
+    <div class="result">
+      <p><strong>Categoria:</strong> {{ category }}</p>
+      <p><strong>Resposta sugerida:</strong></p>
+      <p>{{ reply }}</p>
+    </div>
+    {% endif %}
+  </body>
+</html>
