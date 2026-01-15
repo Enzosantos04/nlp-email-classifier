@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <title>Email AI Classifier</title>
     <link rel="icon" href="/static/img/logo-autou.webp" />
@@ -9,51 +8,54 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-        rel="stylesheet" />
-</head>
-
-<body>
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <header>
-        <img src="/static/img/logo-autou.webp" alt="" />
+      <img src="/static/img/logo-autou.webp" alt="" />
     </header>
-
     <div class="form-box">
-        <h2>Classifique seu Email</h2>
-        <form method="post" action="/classify">
-            <textarea name="email_content" placeholder="Cole aqui o conteúdo do email..." required
-                resize="none"></textarea>
-
-            <button type="submit">Classificar Email</button>
-        </form>
+      <h2>Classifique seu Email</h2>
+      <form method="post" action="/classify">
+        <textarea
+          name="email_content"
+          placeholder="Cole aqui o conteúdo do email..."
+          required
+          resize="none"
+        ></textarea>
+        <button type="submit">Classificar Email</button>
+      </form>
     </div>
 
     {% if category %}
-    <div class="result">
-        <p>
-            <strong>Categoria:</strong>
-            <span style="
+    <div class="result-display">
+      <p>
+        <strong>Categoria:</strong>
+        <span
+          style="
       color:
       {% if category == 'Produtivo' %}
         #16a34a
       {% else %}
         #dc2626
       {% endif %}
-    ">
-                {{ category }}
-            </span>
-        </p>
-        <br />
-        <p><strong>Resposta sugerida:</strong></p>
-        <br />
-        <p>{{ classification }}</p>
+    "
+        >
+          {{ category }}
+        </span>
+      </p>
+      <br />
+      <p><strong>Resposta sugerida:</strong></p>
+      <br />
+      <p>{{ classification }}</p>
     </div>
     {% endif %}
 
     <footer>
-        <p>Desenvolvido por Enzo Santos</p>
-        <p>Todos os direitos reservados © 2026</p>
+      <p>Desenvolvido por Enzo Santos</p>
+      <p>Todos os direitos reservados © 2026</p>
     </footer>
-</body>
-
+  </body>
 </html>
